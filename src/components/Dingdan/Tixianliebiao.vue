@@ -38,6 +38,7 @@
           <vxe-table-column field="withdraw_price" title="提现金额"></vxe-table-column>
           <vxe-table-column field="myTime" title="申请时间"></vxe-table-column>
           <vxe-table-column field="myStatus" title="状态"></vxe-table-column>
+          <vxe-table-column field="bankinfo.username" title="用户姓名"></vxe-table-column>
           <vxe-table-column field="bankinfo.bank_name" title="银行卡开户行"></vxe-table-column>
           <vxe-table-column field="bankinfo.bank_number" title="银行卡卡号"></vxe-table-column>
           <vxe-table-column title="操作状态" width="140">

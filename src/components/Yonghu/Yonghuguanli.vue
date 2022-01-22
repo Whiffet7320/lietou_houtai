@@ -85,7 +85,7 @@
               </el-image>
             </template>
           </vxe-table-column>
-          <vxe-table-column field="now_money" title="余额"></vxe-table-column>
+          <vxe-table-column field="myPname" title="邀请人"></vxe-table-column>
           <vxe-table-column field="brokerage_price" title="佣金"></vxe-table-column>
           <vxe-table-column field="integral" title="积分"></vxe-table-column>
           <vxe-table-column field="myStatus" title="状态"></vxe-table-column>
@@ -241,6 +241,8 @@ export default {
         ele.myStatus = ele.realname && ele.realname.status == 0 ? '待审核' : ele.realname && ele.realname.status == 1 ? '审核通过' : '未实名'; 
         ele.myNickname =
           ele.nickname == "" || !ele.nickname ? "匿名用户" : ele.nickname;
+        ele.myPname =
+          ele.pname ? ele.pname.nickname : '无'
         if(ele.realname){
           ele.realname.front_img = `${this.$url}/${ele.realname.front_img}`
           ele.realname.back_img = `${this.$url}/${ele.realname.back_img}`

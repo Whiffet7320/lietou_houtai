@@ -1,6 +1,6 @@
 export default {
     // 校园帮帮
-    baseUrl: 'http://192.168.50.142:9007', //https://schoolhelp.5laoye.com  http://192.168.50.142:9004
+    baseUrl: 'https://pangxie.xingmangkeji.cn', //https://schoolhelp.5laoye.com  http://192.168.50.142:9004
     login: '/admin/login', //登录
     user_list:'/admin/user_list',//用户列表
     order_list:'/admin/order_list',//订单列表
