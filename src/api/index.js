@@ -2,6 +2,7 @@ import axios from 'axios';
 import Vue from 'vue'
 import router from '../router.js';
 import urls from './url.js';
+import qs from 'qs'
 const vue = new Vue()
 axios.defaults.headers['Content-Type'] = "application/json;charset=UTF-8";
 let myPost = axios.create({
@@ -48,10 +49,14 @@ myDelete.interceptors.request.use(config => {
     return Promise.reject();
 })
 myPost.interceptors.request.use(config => {
+    config.headers = {
+        'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
+    }
     if (sessionStorage.getItem("token")) {
-        config.headers = {
-            'token': sessionStorage.getItem("token"),
-        }
+        // config.headers = {
+        //     'token': sessionStorage.getItem("token"),
+        // }
+        config.headers.token = sessionStorage.getItem("token")
     }
     return config;
 }, error => {
@@ -60,10 +65,14 @@ myPost.interceptors.request.use(config => {
 })
 
 myGet.interceptors.request.use(config => {
+    config.headers = {
+        'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
+    }
     if (sessionStorage.getItem("token")) {
-        config.headers = {
-            'token': sessionStorage.getItem("token"),
-        }
+        // config.headers = {
+        //     'token': sessionStorage.getItem("token"),
+        // }
+        config.headers.token = sessionStorage.getItem("token")
     }
     return config;
 }, error => {
@@ -263,11 +272,10 @@ myDelete.interceptors.response.use(response => {
 
 export default {
     login(obj) {
+        obj = qs.stringify(obj)
         return myPost({
             url: urls.login,
-            data: {
-                ...obj
-            }
+            data: obj
         })
     },
     user_list(obj) {
@@ -278,62 +286,312 @@ export default {
             }
         })
     },
-    order_list(obj) {
-        return myGet({
-            url: `${urls.order_list}`,
-            params: {
-                ...obj
-            }
-        })
-    },
-    webconfig_detail() {
-        return myGet({
-            url: `${urls.webconfig_detail}`,
-        })
-    },
-    webconfig_update(obj) {
+    foreignlanguagecategorylist(obj) {
+        obj = qs.stringify(obj)
         return myPost({
-            url: urls.webconfig_update,
-            data: {
-                ...obj
-            }
+            url: urls.foreignlanguagecategorylist,
+            data: obj
         })
     },
-    user_check_realname(obj) {
-        return myGet({
-            url: `${urls.user_check_realname}`,
-            params: {
-                ...obj
-            }
-        })
-    },
-    order_send(obj) {
+    add_foreignlanguagecategory(obj) {
+        obj = qs.stringify(obj)
         return myPost({
-            url: urls.order_send,
-            data: {
-                ...obj
-            }
+            url: urls.add_foreignlanguagecategory,
+            data: obj
         })
     },
-    withdraw_list(obj) {
-        return myGet({
-            url: `${urls.withdraw_list}`,
-            params: {
-                ...obj
-            }
-        })
-    },
-    express_list() {
-        return myGet({
-            url: `${urls.express_list}`,
-        })
-    },
-    withdraw_check(obj) {
+    edit_foreignlanguagecategory(obj) {
+        obj = qs.stringify(obj)
         return myPost({
-            url: urls.withdraw_check,
-            data: {
-                ...obj
-            }
+            url: urls.edit_foreignlanguagecategory,
+            data: obj
+        })
+    },
+    del_foreignlanguagecategory(obj) {
+        obj = qs.stringify(obj)
+        return myPost({
+            url: urls.del_foreignlanguagecategory,
+            data: obj
+        })
+    },
+    industrylist(obj) {
+        obj = qs.stringify(obj)
+        return myPost({
+            url: urls.industrylist,
+            data: obj
+        })
+    },
+    add_industry(obj) {
+        obj = qs.stringify(obj)
+        return myPost({
+            url: urls.add_industry,
+            data: obj
+        })
+    },
+    edit_industry(obj) {
+        obj = qs.stringify(obj)
+        return myPost({
+            url: urls.edit_industry,
+            data: obj
+        })
+    },
+    del_industry(obj) {
+        obj = qs.stringify(obj)
+        return myPost({
+            url: urls.del_industry,
+            data: obj
+        })
+    },
+    jobcategorylist(obj) {
+        obj = qs.stringify(obj)
+        return myPost({
+            url: urls.jobcategorylist,
+            data: obj
+        })
+    },
+    add_jobcategory(obj) {
+        obj = qs.stringify(obj)
+        return myPost({
+            url: urls.add_jobcategory,
+            data: obj
+        })
+    },
+    edit_jobcategory(obj) {
+        obj = qs.stringify(obj)
+        return myPost({
+            url: urls.edit_jobcategory,
+            data: obj
+        })
+    },
+    del_jobcategory(obj) {
+        obj = qs.stringify(obj)
+        return myPost({
+            url: urls.del_jobcategory,
+            data: obj
+        })
+    },
+    swiperlist(obj) {
+        obj = qs.stringify(obj)
+        return myPost({
+            url: urls.swiperlist,
+            data: obj
+        })
+    },
+    add_swiper(obj) {
+        obj = qs.stringify(obj)
+        return myPost({
+            url: urls.add_swiper,
+            data: obj
+        })
+    },
+    aliyun_osssts(obj) {
+        obj = qs.stringify(obj)
+        return myPost({
+            url: urls.aliyun_osssts,
+            data: obj
+        })
+    },
+    edit_swiper(obj) {
+        obj = qs.stringify(obj)
+        return myPost({
+            url: urls.edit_swiper,
+            data: obj
+        })
+    },
+    del_swiper(obj) {
+        obj = qs.stringify(obj)
+        return myPost({
+            url: urls.del_swiper,
+            data: obj
+        })
+    },
+    com_team(obj) {
+        obj = qs.stringify(obj)
+        return myPost({
+            url: urls.com_team,
+            data: obj
+        })
+    },
+    compaylist(obj) {
+        obj = qs.stringify(obj)
+        return myPost({
+            url: urls.compaylist,
+            data: obj
+        })
+    },
+    compayexaminelist(obj) {
+        obj = qs.stringify(obj)
+        return myPost({
+            url: urls.compayexaminelist,
+            data: obj
+        })
+    },
+    compayexamineoperation(obj) {
+        obj = qs.stringify(obj)
+        return myPost({
+            url: urls.compayexamineoperation,
+            data: obj
+        })
+    },
+    compayview(obj) {
+        obj = qs.stringify(obj)
+        return myPost({
+            url: urls.compayview,
+            data: obj
+        })
+    },
+    compostlist(obj) {
+        obj = qs.stringify(obj)
+        return myPost({
+            url: urls.compostlist,
+            data: obj
+        })
+    },
+    compostoperation(obj) {
+        obj = qs.stringify(obj)
+        return myPost({
+            url: urls.compostoperation,
+            data: obj
+        })
+    },
+    compostcandidatelist(obj) {
+        obj = qs.stringify(obj)
+        return myPost({
+            url: urls.compostcandidatelist,
+            data: obj
+        })
+    },
+    memberlist(obj) {
+        obj = qs.stringify(obj)
+        return myPost({
+            url: urls.memberlist,
+            data: obj
+        })
+    },
+    del_member(obj) {
+        obj = qs.stringify(obj)
+        return myPost({
+            url: urls.del_member,
+            data: obj
+        })
+    },
+    app_logo(obj) {
+        obj = qs.stringify(obj)
+        return myGet({
+            url: urls.app_logo,
+            data: obj
+        })
+    },
+    editapp_logo(obj) {
+        obj = qs.stringify(obj)
+        return myPost({
+            url: urls.app_logo,
+            data: obj
+        })
+    },
+    foreignlang_keyword(obj) {
+        obj = qs.stringify(obj)
+        return myGet({
+            url: urls.foreignlang_keyword,
+            data: obj
+        })
+    },
+    editforeignlang_keyword(obj) {
+        obj = qs.stringify(obj)
+        return myPost({
+            url: urls.foreignlang_keyword,
+            data: obj
+        })
+    },
+    post_rank(obj) {
+        obj = qs.stringify(obj)
+        return myGet({
+            url: urls.post_rank,
+            data: obj
+        })
+    },
+    editpost_rank(obj) {
+        obj = qs.stringify(obj)
+        return myPost({
+            url: urls.post_rank,
+            data: obj
+        })
+    },
+    vocabulary(obj) {
+        obj = qs.stringify(obj)
+        return myGet({
+            url: urls.vocabulary,
+            data: obj
+        })
+    },
+    editvocabulary(obj) {
+        obj = qs.stringify(obj)
+        return myPost({
+            url: urls.vocabulary,
+            data: obj
+        })
+    },
+    com_enterpriseagreement(obj) {
+        obj = qs.stringify(obj)
+        return myGet({
+            url: urls.com_enterpriseagreement,
+            data: obj
+        })
+    },
+    editcom_enterpriseagreement(obj) {
+        obj = qs.stringify(obj)
+        return myPost({
+            url: urls.com_enterpriseagreement,
+            data: obj
+        })
+    },
+    com_jobsagreement(obj) {
+        obj = qs.stringify(obj)
+        return myGet({
+            url: urls.com_jobsagreement,
+            data: obj
+        })
+    },
+    editcom_jobsagreement(obj) {
+        obj = qs.stringify(obj)
+        return myPost({
+            url: urls.com_jobsagreement,
+            data: obj
+        })
+    },
+    problemlist(obj) {
+        obj = qs.stringify(obj)
+        return myPost({
+            url: urls.problemlist,
+            data: obj
+        })
+    },
+    add_problem(obj) {
+        obj = qs.stringify(obj)
+        return myPost({
+            url: urls.add_problem,
+            data: obj
+        })
+    },
+    edit_problem(obj) {
+        obj = qs.stringify(obj)
+        return myPost({
+            url: urls.edit_problem,
+            data: obj
+        })
+    },
+    del_problem(obj) {
+        obj = qs.stringify(obj)
+        return myPost({
+            url: urls.del_problem,
+            data: obj
+        })
+    },
+    compostnavigation_view(obj) {
+        obj = qs.stringify(obj)
+        return myPost({
+            url: urls.compostnavigation_view,
+            data: obj
         })
     },
     async productUpload(image) {
@@ -356,6 +614,6 @@ export default {
         };
         const res = await axios
             .post(`${urls.baseUrl}/admin/upload_pic`, image, configs)
-            return res.data
+        return res.data
     },
 }

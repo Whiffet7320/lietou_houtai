@@ -32,10 +32,34 @@ export default new Vuex.Store({
     wenzhangPage: 1, //文章列表
     wenzhangPageSize: 10,
     wenzhangObj:null,
+    gwPage: 1, //文章列表
+    gwPageSize: 10,
+    cyPage: 1, //文章列表
+    cyPageSize: 10,
+    ypPage: 1, //文章列表
+    ypPageSize: 10,
   },
   mutations: {
     headerTit(state, str) {
       state.headerTit = str;
+    },
+    gwPage(state, str) {
+      state.gwPage = str;
+    },
+    gwPageSize(state, str) {
+      state.gwPageSize = str;
+    },
+    cyPage(state, str) {
+      state.cyPage = str;
+    },
+    cyPageSize(state, str) {
+      state.cyPageSize = str;
+    },
+    ypPage(state, str) {
+      state.ypPage = str;
+    },
+    ypPageSize(state, str) {
+      state.ypPageSize = str;
     },
     biaobaiqiangPage(state, str) {
       state.biaobaiqiangPage = str;

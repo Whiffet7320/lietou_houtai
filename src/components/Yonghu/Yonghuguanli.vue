@@ -19,7 +19,7 @@
       </div>-->
       <div class="myTable">
         <vxe-table :data="tableData">
-          <vxe-table-column type="expand" width="30" :fixed="null">
+          <!-- <vxe-table-column type="expand" width="30" :fixed="null">
             <template #content="{ row }">
               <template>
                 <div class="xiala" v-if='row.realname'>
@@ -68,14 +68,14 @@
                 </div>
               </template>
             </template>
-          </vxe-table-column>
-          <vxe-table-column field="uid" title="ID"></vxe-table-column>
-          <vxe-table-column field="myNickname" title="昵称"></vxe-table-column>
-          <vxe-table-column field="avatar" title="发布者头像">
+          </vxe-table-column> -->
+          <vxe-table-column field="id" title="ID"></vxe-table-column>
+          <vxe-table-column field="nickname" title="昵称"></vxe-table-column>
+          <vxe-table-column field="avatar" title="头像">
             <template slot-scope="scope">
               <el-image
-                :src="scope.row.avatar"
-                :preview-src-list="[scope.row.avatar]"
+                :src="scope.row.userface"
+                :preview-src-list="[scope.row.userface]"
                 fit="fill"
                 style="width: 40px; height: 40px"
               >
@@ -85,20 +85,18 @@
               </el-image>
             </template>
           </vxe-table-column>
-          <vxe-table-column field="myPname" title="邀请人"></vxe-table-column>
-          <vxe-table-column field="brokerage_price" title="佣金"></vxe-table-column>
-          <vxe-table-column field="integral" title="积分"></vxe-table-column>
-          <vxe-table-column field="myStatus" title="状态"></vxe-table-column>
+          <vxe-table-column field="degree_num" title="待定"></vxe-table-column>
+          <vxe-table-column field="last_logintime" title="最后登录时间"></vxe-table-column>
           <!-- <vxe-table-column field="myStatus" width="120" title="状态(是否通过)">
             <template slot-scope="scope">
               <el-switch @change="changeKG(scope.row)" v-model="scope.row.myStatus"></el-switch>
             </template>
           </vxe-table-column>-->
-          <vxe-table-column title="操作状态(审核)" width="140">
+          <vxe-table-column title="操作状态" width="120">
             <template slot-scope="scope">
               <div class="flex">
-                <el-button size="small" :disabled='!scope.row.realname || scope.row.realname.status != 0' @click="tongguo(scope.row)" type="text">通过</el-button>
-                <el-button size="small" :disabled='!scope.row.realname || scope.row.realname.status != 0' @click="jujue(scope.row)" type="text">拒绝</el-button>
+                <el-button size="small" @click="lahei(scope.row)" type="text">拉黑</el-button>
+                <!-- <el-button size="small" :disabled='!scope.row.realname || scope.row.realname.status != 0' @click="jujue(scope.row)" type="text">拒绝</el-button> -->
                 <!-- <el-button size="small" @click="toEditShop(scope.row)" type="text">查看评论</el-button> -->
                 <!-- <el-button size="small" @click="toDelShop(scope.row)" type="text">删除</el-button> -->
               </div>
@@ -230,30 +228,27 @@ export default {
   },
   methods: {
     async getData() {
-      const res = await this.$api.user_list({
+      const res = await this.$api.memberlist({
         limit: this.jishiShougouPageSize,
-        page: this.jishiShougouPage
+        page: this.jishiShougouPage,
+        user_id:'',
+        sort:0,
       });
-      console.log(res.data.data);
-      this.total = res.data.total;
-      this.tableData = res.data.data;
-      this.tableData.forEach(ele => {
-        ele.myStatus = ele.realname && ele.realname.status == 0 ? '待审核' : ele.realname && ele.realname.status == 1 ? '审核通过' : '未实名'; 
-        ele.myNickname =
-          ele.nickname == "" || !ele.nickname ? "匿名用户" : ele.nickname;
-        ele.myPname =
-          ele.pname ? ele.pname.nickname : '无'
-        if(ele.realname){
-          ele.realname.front_img = `${this.$url}/${ele.realname.front_img}`
-          ele.realname.back_img = `${this.$url}/${ele.realname.back_img}`
-        }
-        if (ele.img_paths) {
-          ele.myImg_paths = ele.img_paths.split(",");
-          ele.myImg_paths.forEach((img, i) => {
-            this.$set(ele.myImg_paths, i, `${this.$url}/${img}`);
-          });
-        }
-      });
+      console.log(res.list);
+      this.total = res.total;
+      this.tableData = res.list;
+    },
+    async lahei(row){
+      const res = await this.$api.del_member({
+        id:row.id,
+      })
+      if (res.result == 1) {
+        this.$message({
+          message: res.msg,
+          type: "success"
+        });
+        this.getData();
+      }
     },
     async tongguo(row){
       const res = await this.$api.user_check_realname({

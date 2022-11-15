@@ -208,8 +208,8 @@ export default {
   methods: {
     async getData() {
       const res = await this.$api.withdraw_list({
-        limit: this.biaobaiqiangPinglunPageSize,
-        page: this.biaobaiqiangPinglunPage
+        limit: this.jishiShougouPageSize,
+        page: this.jishiShougouPage
       });
       console.log(res.data.data);
       this.total = res.data.total;
@@ -291,37 +291,38 @@ export default {
     fahuoHandleClose() {
       this.fahuoDialogVisible = false;
     },
-    async getPinlunData() {
-      const res = await this.$api.comment_list({
-        type: "jishi",
-        id: this.pinlunId,
-        page: this.biaobaiqiangPinglunPage,
-        limit: this.biaobaiqiangPinglunPageSize
-      });
-      this.pinlunCount = res.data.total;
-      this.pinlunList = res.data.data;
-      this.pinlunList.forEach(ele => {
-        ele.myNickname =
-          ele.nickname == "" || !ele.nickname ? "匿名用户" : ele.nickname;
-        if (ele.comment_reply_list) {
-          ele.comment_reply_list.forEach(item => {
-            item.myNickname =
-              item.nickname == "" || !item.nickname
-                ? "匿名用户"
-                : item.nickname;
-          });
-        }
-      });
-    },
-    toSeeXiangqin(row) {
-      this.$store.commit("biaobaiqiangPinglunPage", 1);
-      this.pinlunId = row.id;
-      this.getPinlunData();
-      this.seePinlunDialogVisible = true;
-    },
+    // async getPinlunData() {
+    //   const res = await this.$api.comment_list({
+    //     type: "jishi",
+    //     id: this.pinlunId,
+    //     page: this.biaobaiqiangPinglunPage,
+    //     limit: this.biaobaiqiangPinglunPageSize
+    //   });
+    //   this.pinlunCount = res.data.total;
+    //   this.pinlunList = res.data.data;
+    //   this.pinlunList.forEach(ele => {
+    //     ele.myNickname =
+    //       ele.nickname == "" || !ele.nickname ? "匿名用户" : ele.nickname;
+    //     if (ele.comment_reply_list) {
+    //       ele.comment_reply_list.forEach(item => {
+    //         item.myNickname =
+    //           item.nickname == "" || !item.nickname
+    //             ? "匿名用户"
+    //             : item.nickname;
+    //       });
+    //     }
+    //   });
+    // },
+    // toSeeXiangqin(row) {
+    //   this.$store.commit("biaobaiqiangPinglunPage", 1);
+    //   this.pinlunId = row.id;
+    //   this.getPinlunData();
+    //   this.seePinlunDialogVisible = true;
+    // },
     handleCurrentChange1(val) {
       console.log(`当前页: ${val}`);
       this.$store.commit("biaobaiqiangPinglunPage", val);
+      console.log(this.biaobaiqiangPinglunPage)
     },
     searchPinlunOnSubmit() {},
     searchPinlunOnResult() {

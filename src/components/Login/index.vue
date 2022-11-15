@@ -126,16 +126,16 @@ export default {
     // 登录
     async onLogin() {
       const res = await this.$api.login({
-        account: this.loginForm.username,
-        password: this.loginForm.password
+        username: this.loginForm.username,
+        userpass: this.loginForm.password
       });
       console.log(res);
-      if (res.code == 200) {
-        sessionStorage.setItem("token", res.data.token);
+      if (res.result == 1) {
+        sessionStorage.setItem("token", res.token);
         sessionStorage.setItem("isLogin", true);
-        sessionStorage.setItem("userInfo", JSON.stringify(res.data.info));
+        // sessionStorage.setItem("userInfo", JSON.stringify(res.data.info));
         this.$message({
-          message: res.message,
+          message: res.msg,
           type: "success"
         });
         setTimeout(() => {
@@ -143,7 +143,7 @@ export default {
           this.$router.go(0);
         }, 500);
       } else {
-        this.$message.error(res.message);
+        this.$message.error(res.msg);
       }
     }
   }

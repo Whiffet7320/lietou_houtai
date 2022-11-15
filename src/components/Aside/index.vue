@@ -23,9 +23,34 @@
           <i class="el-icon-s-home"></i>
           <span slot="title">首页</span>
         </el-menu-item>-->
-        <el-submenu index="2">
+        <el-submenu index="50">
+          <template slot="title">
+            <i class="el-icon-s-operation"></i>
+            <span>分类</span>
+          </template>
+          <el-menu-item :route="{ name: 'Waiyuzhonglei' }" index="50-1">外语种类</el-menu-item>
+          <el-menu-item :route="{ name: 'Hangyefenlei' }" index="50-2">行业分类</el-menu-item>
+          <el-menu-item :route="{ name: 'Gangweifenlei' }" index="50-3">岗位分类</el-menu-item>
+        </el-submenu>
+        <el-submenu index="51">
           <template slot="title">
             <i class="el-icon-s-promotion"></i>
+            <span>广告</span>
+          </template>
+          <el-menu-item :route="{ name: 'Guanggaoguanli' }" index="51-1">广告管理</el-menu-item>
+        </el-submenu>
+        <el-submenu index="52">
+          <template slot="title">
+            <i class="el-icon-s-order"></i>
+            <span>猎企</span>
+          </template>
+          <el-menu-item :route="{ name: 'Lieqiliebiao' }" index="52-2">猎企列表</el-menu-item>
+          <el-menu-item :route="{ name: 'Lieqishenheliebiao' }" index="52-3">猎企审核列表</el-menu-item>
+          <!-- <el-menu-item :route="{ name: 'Lieqichengyuan' }" index="52-1">猎企成员</el-menu-item> -->
+        </el-submenu>
+        <el-submenu index="2">
+          <template slot="title">
+            <i class="el-icon-s-custom"></i>
             <span>用户</span>
           </template>
           <el-menu-item :route="{ name: 'Yonghuguanli' }" index="2-1">用户管理</el-menu-item>
@@ -35,7 +60,25 @@
           >-->
           <!-- <el-menu-item :route="{ name: 'Yunfeimoban' }" index="2-4">运费模板</el-menu-item> -->
         </el-submenu>
-        <el-submenu index="3">
+        <el-submenu index="53">
+          <template slot="title">
+            <i class="el-icon-s-tools"></i>
+            <span>配置</span>
+          </template>
+          <el-menu-item :route="{ name: 'LOGO' }" index="53-1">LOGO</el-menu-item>
+          <el-menu-item :route="{ name: 'Waiyu' }" index="53-2">外语能力关键词</el-menu-item>
+          <el-menu-item :route="{ name: 'Gangweizhiji' }" index="53-3">岗位职级后缀关键词</el-menu-item>
+          <el-menu-item :route="{ name: 'Mingganci' }" index="53-4">严禁敏感词汇</el-menu-item>
+          <el-menu-item :route="{ name: 'LTyonghuxieyi' }" index="53-5">猎头端用户协议</el-menu-item>
+          <el-menu-item :route="{ name: 'QZyonghuxieyi' }" index="53-6">求职端用户协议</el-menu-item>
+          <el-menu-item :route="{ name: 'Wenti' }" index="53-7">问题</el-menu-item>
+          <!-- <el-menu-item :route="{ name: 'Shangpingfenlei' }" index="2-2">商品分类</el-menu-item> -->
+          <!-- <el-menu-item :route="{ name: 'Shangpingpinglun' }" index="2-3"
+            >商品评论</el-menu-item
+          >-->
+          <!-- <el-menu-item :route="{ name: 'Yunfeimoban' }" index="2-4">运费模板</el-menu-item> -->
+        </el-submenu>
+        <el-submenu v-if="false" index="3">
           <template slot="title">
             <i class="el-icon-s-shop"></i>
             <span>订单</span>
@@ -116,7 +159,7 @@
           </template>
           <el-menu-item :route="{ name: 'Wenzhangliebiao' }" index="9-1">文章列表</el-menu-item>
         </el-submenu> -->
-        <el-submenu index="8">
+        <el-submenu v-if="false" index="8">
           <template slot="title">
             <i class="el-icon-s-tools"></i>
             <span>设置</span>
@@ -153,6 +196,104 @@ export default {
       if (to.path == "/Shouye") {
         this.menuActiveIndex = "1-1";
         this.$store.commit("headerTit", "首页");
+      } else if (to.path == "/Fenlei/Waiyuzhonglei") {
+        this.menuActiveIndex = "50-1";
+        this.$store.commit(
+          "headerTit",
+          `分类 / <span style="color: #515a61;
+        font-weight: 700;">外语种类</span>`
+        );
+      } else if (to.path == "/Fenlei/Hangyefenlei") {
+        this.menuActiveIndex = "50-2";
+        this.$store.commit(
+          "headerTit",
+          `分类 / <span style="color: #515a61;
+        font-weight: 700;">行业分类</span>`
+        );
+      } else if (to.path == "/Fenlei/Gangweifenlei") {
+        this.menuActiveIndex = "50-3";
+        this.$store.commit(
+          "headerTit",
+          `分类 / <span style="color: #515a61;
+        font-weight: 700;">岗位分类</span>`
+        );
+      } else if (to.path == "/Guanggao/Guanggaoguanli") {
+        this.menuActiveIndex = "51-1";
+        this.$store.commit(
+          "headerTit",
+          `广告 / <span style="color: #515a61;
+        font-weight: 700;">广告管理</span>`
+        );
+      } else if (to.path == "/Lieqi/Lieqichengyuan") {
+        this.menuActiveIndex = "52-1";
+        this.$store.commit(
+          "headerTit",
+          `猎企 / <span style="color: #515a61;
+        font-weight: 700;">猎企成员</span>`
+        );
+      } else if (to.path == "/Lieqi/Lieqiliebiao") {
+        this.menuActiveIndex = "52-2";
+        this.$store.commit(
+          "headerTit",
+          `猎企 / <span style="color: #515a61;
+        font-weight: 700;">猎企列表</span>`
+        );
+      }else if (to.path == "/Lieqi/Lieqishenheliebiao") {
+        this.menuActiveIndex = "52-3";
+        this.$store.commit(
+          "headerTit",
+          `猎企 / <span style="color: #515a61;
+        font-weight: 700;">猎企审核列表</span>`
+        );
+      }else if (to.path == "/Peizhi/LOGO") {
+        this.menuActiveIndex = "53-1";
+        this.$store.commit(
+          "headerTit",
+          `配置 / <span style="color: #515a61;
+        font-weight: 700;">LOGO</span>`
+        );
+      }else if (to.path == "/Peizhi/Waiyu") {
+        this.menuActiveIndex = "53-2";
+        this.$store.commit(
+          "headerTit",
+          `配置 / <span style="color: #515a61;
+        font-weight: 700;">外语能力关键词</span>`
+        );
+      }else if (to.path == "/Peizhi/Gangweizhiji") {
+        this.menuActiveIndex = "53-3";
+        this.$store.commit(
+          "headerTit",
+          `配置 / <span style="color: #515a61;
+        font-weight: 700;">岗位职级后缀关键词</span>`
+        );
+      }else if (to.path == "/Peizhi/Mingganci") {
+        this.menuActiveIndex = "53-4";
+        this.$store.commit(
+          "headerTit",
+          `配置 / <span style="color: #515a61;
+        font-weight: 700;">严禁敏感词汇</span>`
+        );
+      }else if (to.path == "/Peizhi/LTyonghuxieyi") {
+        this.menuActiveIndex = "53-5";
+        this.$store.commit(
+          "headerTit",
+          `配置 / <span style="color: #515a61;
+        font-weight: 700;">猎头端用户协议</span>`
+        );
+      } else if (to.path == "/Peizhi/QZyonghuxieyi") {
+        this.menuActiveIndex = "53-6";
+        this.$store.commit(
+          "headerTit",
+          `配置 / <span style="color: #515a61;
+        font-weight: 700;">求职端用户协议</span>`
+        );
+      } else if (to.path == "/Peizhi/Wenti") {
+        this.menuActiveIndex = "53-7";
+        this.$store.commit(
+          "headerTit",
+          `配置 / <span style="color: #515a61;
+        font-weight: 700;">问题</span>`
+        );
       } else if (to.path == "/Yonghu/Yonghuguanli") {
         this.menuActiveIndex = "2-1";
         this.$store.commit(
@@ -390,7 +531,7 @@ export default {
       this.$router.go(0);
       this.$router.push({ path: "/login" });
     }
-  }
+  } 
 };
 </script>
 

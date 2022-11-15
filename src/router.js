@@ -15,6 +15,82 @@ const routes = [{
             component: () => import('./components/Home/Shouye'),
         }, ]
     }, {
+        path: '/Fenlei',
+        name: 'Fenlei',
+        component: () => import('./components/Fenlei'),
+        children: [{
+            path: 'Waiyuzhonglei',
+            name: 'Waiyuzhonglei',
+            component: () => import('./components/Fenlei/Waiyuzhonglei'),
+        },{
+            path: 'Hangyefenlei',
+            name: 'Hangyefenlei',
+            component: () => import('./components/Fenlei/Hangyefenlei'),
+        },{
+            path: 'Gangweifenlei',
+            name: 'Gangweifenlei',
+            component: () => import('./components/Fenlei/Gangweifenlei'),
+        }]
+    }, {
+        path: '/Guanggao',
+        name: 'Guanggao',
+        component: () => import('./components/Guanggao'),
+        children: [{
+            path: 'Guanggaoguanli',
+            name: 'Guanggaoguanli',
+            component: () => import('./components/Guanggao/Guanggaoguanli'),
+        }]
+    },{
+        path: '/Lieqi',
+        name: 'Lieqi',
+        component: () => import('./components/Lieqi'),
+        children: [{
+            path: 'Lieqichengyuan',
+            name: 'Lieqichengyuan',
+            component: () => import('./components/Lieqi/Lieqichengyuan'),
+        },{
+            path: 'Lieqiliebiao',
+            name: 'Lieqiliebiao',
+            component: () => import('./components/Lieqi/Lieqiliebiao'),
+        },{
+            path: 'Lieqishenheliebiao',
+            name: 'Lieqishenheliebiao',
+            component: () => import('./components/Lieqi/Lieqishenheliebiao'),
+        }]
+    }, {
+        path: '/Peizhi',
+        name: 'Peizhi',
+        component: () => import('./components/Peizhi'),
+        children: [{
+            path: 'LOGO',
+            name: 'LOGO',
+            component: () => import('./components/Peizhi/LOGO'),
+        },{
+            path: 'Waiyu',
+            name: 'Waiyu',
+            component: () => import('./components/Peizhi/Waiyu'),
+        },{
+            path: 'Gangweizhiji',
+            name: 'Gangweizhiji',
+            component: () => import('./components/Peizhi/Gangweizhiji'),
+        },{
+            path: 'Mingganci',
+            name: 'Mingganci',
+            component: () => import('./components/Peizhi/Mingganci'),
+        },{
+            path: 'LTyonghuxieyi',
+            name: 'LTyonghuxieyi',
+            component: () => import('./components/Peizhi/LTyonghuxieyi'),
+        },{
+            path: 'QZyonghuxieyi',
+            name: 'QZyonghuxieyi',
+            component: () => import('./components/Peizhi/QZyonghuxieyi'),
+        },{
+            path: 'Wenti',
+            name: 'Wenti',
+            component: () => import('./components/Peizhi/Wenti'),
+        }]
+    },{
         path: '/Yonghu',
         name: 'Yonghu',
         component: () => import('./components/Yonghu'),
